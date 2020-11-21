@@ -2,6 +2,10 @@
   "name": "gamebrowser-web",
   "version": "1.0.0",
   "description": "UI layer for the GameBrowser API",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonifen/gamebrowser-api"
+  },
   "main": "js/index.js",
   "scripts": {
     "dev": "set NODE_ENV=development&& webpack-dev-server --port 9000",
