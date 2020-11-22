@@ -29,7 +29,6 @@ function ServerList() {
 
   return (
     <div data-testid="server-list">
-      <strong>Server List</strong><br />
       {
         serverList.map((server, index) => {
           return (

@@ -1,5 +1,4 @@
 .server-details-summary {
-  padding: 1rem 0 0 1rem;
   display: flex;
 
   .ipAddress {
@@ -16,11 +15,6 @@
 
   .mapName {
     width: 5rem;
-  }
-
-  &:after {
-    content: ">";
-    right: -2rem;
   }
 }
 
