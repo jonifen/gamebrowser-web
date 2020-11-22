@@ -41,7 +41,7 @@ function ServerDetails(server) {
 
             {
               serverDetails.mapName &&
-                <img src={`/img/${serverDetails.mapName}.jpg`} />
+                <img src={`https://jonifen.co.uk/gamebrowser-images/quake3arena/${serverDetails.mapName}.jpg`} />
             }
 
             <div>
