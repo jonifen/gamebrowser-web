@@ -4,7 +4,7 @@
   "description": "UI layer for the GameBrowser API",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jonifen/gamebrowser-api"
+    "url": "https://github.com/jonifen/gamebrowser-web"
   },
   "main": "js/index.js",
   "scripts": {
