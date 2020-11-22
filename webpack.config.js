@@ -31,23 +31,11 @@ module.exports = {
     new Dotenv({
       path: getDotEnvFilePath(process.env.NODE_ENV)
     }),
-    new CopyWebpackPlugin([
-      {
-        from: "./public",
-      },
-    ]),
-    new CopyWebpackPlugin([
-      {
-        from: "./img",
-        to: "img",
-      },
-    ]),
-    new CopyWebpackPlugin([
-      {
-        from: "./css",
-        to: "css",
-      },
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "./public" }
+      ]
+    }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
@@ -55,6 +43,11 @@ module.exports = {
       chunkFilename: 'css/[id].css',
     }),
   ],
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000
+  }
 };
 
 function getDotEnvFilePath(stage) {

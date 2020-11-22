@@ -35,11 +35,11 @@ function ServerList() {
           return (
             <div key={`${server.ipAddress}-${index}`}>
               <ServerDetails {...server} />
+              <hr />
             </div>
           )
         })
       }
-      <hr />
       <div>
         <button onClick={handleViewStoredDataClick}>View Stored Data</button>
       </div>
