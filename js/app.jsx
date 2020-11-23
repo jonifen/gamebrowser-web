@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import ServerList from "./components/server-list.jsx";
+import FilterPanel from "./components/filter-panel.jsx";
 
 function App() {
   return (
     <React.Fragment>
       <div data-testid="app" class="container">
         <h1>GameBrowser</h1>
+        <hr />
+        <FilterPanel />
+        <hr />
         <ServerList />
         
       </div>
