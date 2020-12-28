@@ -1,5 +1,5 @@
 FROM node AS builder
-LABEL maintainer="jonifen <gamebrowser@dev.jonifen.co.uk>"
+LABEL maintainer="jonifen (Jon Cain)"
 
 WORKDIR /app
 COPY . /app
@@ -8,5 +8,5 @@ RUN npm run build
 
 
 FROM nginx:alpine
-LABEL maintainer="jonifen <gamebrowser@dev.jonifen.co.uk>"
+LABEL maintainer="jonifen (Jon Cain)"
 COPY --from=builder /app/dist /usr/share/nginx/html
