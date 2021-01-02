@@ -12,6 +12,7 @@
     "start": "webpack serve",
     "test": "jest --setupFiles dotenv/config --runInBand --no-cache",
     "build": "set NODE_ENV=production&& webpack --mode production",
+    "build:ci": "cross-env NODE_ENV=production webpack --mode production",
     "build:dev": "set NODE_ENV=development&& webpack --mode development"
   },
   "keywords": [],
@@ -31,6 +32,7 @@
     "@testing-library/react-hooks": "^3.4.2",
     "babel-loader": "^8.2.1",
     "copy-webpack-plugin": "^6.3.2",
+    "cross-env": "^7.0.3",
     "css-loader": "^5.0.1",
     "dotenv": "^8.2.0",
     "dotenv-webpack": "^5.1.0",

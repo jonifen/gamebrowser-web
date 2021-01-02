@@ -4,7 +4,7 @@ LABEL maintainer="jonifen (Jon Cain)"
 WORKDIR /app
 COPY . /app
 RUN npm i
-RUN npm run build
+RUN npm run build:ci
 
 
 FROM nginx:alpine
