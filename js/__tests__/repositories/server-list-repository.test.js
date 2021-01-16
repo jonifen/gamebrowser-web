@@ -1,41 +1,42 @@
-import { saveServerList, getServerList, clearServerList } from "../../repositories/server-list-repository";
+import { saveFavourites, getFavourites, clearFavourites } from "../../repositories/server-list-repository";
+import localforage from "localforage";
 
 describe("Server List Repository tests", () => {
-  it("saveServerList() should call localStorage.setItem with a payload", () => {
-    const testServerList = [
-      { "ipAddress": "127.0.0.1", "port": 27960, "game": "quake3arena" }
-    ];
-    const testServerListString = JSON.stringify(testServerList);
+  it("saveFavourites() should call localStorage.setItem with a payload", () => {
+    // Arrange
+    const testServerList = [{"game": "quake3arena", "ipAddress": "127.0.0.1", "port": 27960}];
 
-    const setItemMock = jest.spyOn(window.localStorage.__proto__, "setItem")
+    const setItemMock = jest.spyOn(localforage, "setItem")
       .mockImplementation((serverList) => {});
 
-    saveServerList(testServerList);
+    // Act
+    saveFavourites(testServerList);
 
-    expect(setItemMock).toBeCalledWith("serverList", testServerListString);
+    // Assert
+    expect(setItemMock).toBeCalledWith("favourites", testServerList);
   });
 
-  it("getServerList() should call localStorage.getItem and receive payload", () => {
-    const expected = [
-      { "ipAddress": "127.0.0.1", "port": 27960, "game": "quake3arena" }
-    ];
-    const expectedString = JSON.stringify(expected);
+  it("getFavourites() should call localStorage.getItem and receive payload", () => {
+    // Arrange
+    const getItemMock = jest.spyOn(localforage, "getItem")
+      .mockImplementation(() => { });
 
-    const getItemMock = jest.spyOn(window.localStorage.__proto__, "getItem")
-      .mockImplementation(() => { return expectedString });
+    // Act
+    const actual = getFavourites();
 
-    const actual = getServerList();
-
-    expect(getItemMock).toBeCalled();
-    expect(actual).toStrictEqual(expected)
+    // Assert
+    expect(getItemMock).toBeCalledWith("favourites");
   });
 
-  it("clearServerList() should call localStorage.removeItem", () => {
+  it("clearFavourites() should call localStorage.removeItem", () => {
+    // Arrange
     const removeItemMock = jest.spyOn(window.localStorage.__proto__, "removeItem")
       .mockImplementation(() => {});
 
-    clearServerList();
+    // Act
+    clearFavourites();
 
+    // Assert
     expect(removeItemMock).toBeCalled();
   });
 });

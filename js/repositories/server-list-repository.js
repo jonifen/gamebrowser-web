@@ -1,30 +1,18 @@
-export function getServerList() {
-  if (!checkStorageSupport())
-    return [];
-  
-  const storedData = localStorage.getItem("serverList");
+import localforage from "localforage";
 
-  if (storedData)
-    return JSON.parse(storedData);
+localforage.config({
+  name: "GameBrowser Web"
+});
 
-  return [];
+export async function getFavourites() {
+  console.log("Fetching favourites from DB");
+  return await localforage.getItem("favourites") || [];
 }
 
-export function saveServerList(serverList) {
-  if (!checkStorageSupport())
-    return;
-
-  const dataToStore = JSON.stringify(serverList);
-  localStorage.setItem("serverList", dataToStore);
+export async function saveFavourites(favourites) {
+  await localforage.setItem("favourites", favourites);
 }
 
-export function clearServerList() {
-  if (!checkStorageSupport())
-    return;
-
-  localStorage.removeItem("serverList");
-}
-
-function checkStorageSupport() {
-  return typeof(Storage) !== "undefined";
+export async function clearFavourites() {
+  await localStorage.removeItem("favourites");
 }

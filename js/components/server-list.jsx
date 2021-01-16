@@ -1,13 +1,17 @@
-import React, { useState } from "react";
-import { getServerList, saveServerList } from "../repositories/server-list-repository";
+import React, { useEffect, useState } from "react";
+import { getFavourites, saveFavourites } from "../repositories/server-list-repository";
 import ServerDetails from "./server-details.jsx";
 
 function ServerList() {
-  const [ serverList, setServerList ] = useState(getServerList());
+  const [ serverList, setServerList ] = useState([]);
   const [ editingServerList, setEditingServerList ] = useState(JSON.stringify(serverList));
   const [ rawDataVisible, setRawDataVisible ] = useState(false);
 
   const rawDataStyles = rawDataVisible ? {} : { display: "none" };
+
+  useEffect(() => {
+    getFavourites();
+  }, [serverList]);
 
   const handleViewStoredDataClick = function() {
     setRawDataVisible(true);
@@ -17,11 +21,11 @@ function ServerList() {
     setEditingServerList(event.target.value);
   }
 
-  const handleSaveServerListClick = function() {
+  const handleSaveServerListClick = async function() {
     const data = JSON.parse(editingServerList);
 
     if (data) {
-      saveServerList(data);
+      await saveFavourites(data);
       setServerList(data);
       setRawDataVisible(false);
     }
