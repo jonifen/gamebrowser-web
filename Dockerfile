@@ -1,9 +1,12 @@
-FROM node AS builder
+FROM node AS packages
 LABEL maintainer="jonifen (Jon Cain)"
 
 WORKDIR /app
-COPY . /app
+COPY ./package.json /app
 RUN npm i
+
+FROM packages AS builder
+COPY . /app
 RUN npm run build:ci
 
 
